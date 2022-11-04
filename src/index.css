@@ -1,5 +1,14 @@
+/* VT323 400 */
+@import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+/* Major Mono Display 400 */
+@import url('https://fonts.googleapis.com/css2?family=Major+Mono+Display&family=VT323&display=swap');
+
 * {
   box-sizing: border-box;
   padding: 0;
   margin: 0;
+}
+
+body {
+  font-family: 'Major Mono Display', monospace;
 }
