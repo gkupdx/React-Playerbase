@@ -1,14 +1,17 @@
 //// Button.tsx - individual "button" component
+import { useNavigate } from 'react-router-dom';
 import { FC } from 'react';
 
 interface BtnProps {
-    onClick: Function,
+    route: string,
     name: string,
 }
 
-const Button: FC<BtnProps> = ({ name }) => {
+const Button: FC<BtnProps> = ({ route, name }) => {
+    const navigate = useNavigate();
+
     return (
-        <button className='button'>{name}</button>
+        <button onClick={() => navigate(route)} className='button'>{name}</button>
     )
 }
 
