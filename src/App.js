@@ -9,6 +9,7 @@ import Profile from './pages/Profile';
 import { Routes, Route } from 'react-router-dom';
 
 function App() {
+  const [loggedIn, setLoggedIn] = useState(false);
   const [player, setPlayer] = useState({
     id: '',
     name: '',
@@ -16,6 +17,10 @@ function App() {
     email: '',
     joined: ''
   });
+
+  const checkLoggedIn = (status) => {
+    setLoggedIn(status);
+  }
 
   const loadPlayer = (data) => {
     setPlayer({
@@ -32,25 +37,25 @@ function App() {
       <Routes>
         <Route path='/' element={
           <>
-            <Navbar />
+            <Navbar loggedIn={loggedIn} />
             <Landing />
           </>
         } />
         <Route path='/login' element={
           <>
-            <Navbar />
-            <Login loadPlayer={loadPlayer}/>
+            <Navbar loggedIn={loggedIn} />
+            <Login loadPlayer={loadPlayer} checkLoggedIn={checkLoggedIn} />
           </>
         } />
         <Route path='/register' element={
           <>
-            <Navbar />
+            <Navbar loggedIn={loggedIn}/>
             <Register loadPlayer={loadPlayer}/>
           </>
         } />
         <Route path='/profile/:id' element={
           <>
-            <Navbar />
+            <Navbar loggedIn={loggedIn}/>
             <Profile player={player}/>
           </>
         } />
