@@ -6,9 +6,10 @@ import '../stylesheets/login.css';
 
 interface LoginProps {
     loadPlayer: (data: Object) => void,
+    checkLoggedIn: (status: boolean) => void,
 }
 
-const Login: FC<LoginProps> = ({ loadPlayer }) => {
+const Login: FC<LoginProps> = ({ loadPlayer, checkLoggedIn }) => {
     const [emailField, setEmailField] = useState('');
     const [passwordField, setPasswordField] = useState('');
     const navigate = useNavigate();
@@ -34,6 +35,7 @@ const Login: FC<LoginProps> = ({ loadPlayer }) => {
         .then(player => {
             if (player.id) {
                 loadPlayer(player);
+                checkLoggedIn(true);
                 navigate(`/profile/${player.id}`);
             }
         })
