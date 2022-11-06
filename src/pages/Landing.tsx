@@ -2,7 +2,7 @@
 import Button from '../components/Button';
 import '../stylesheets/landing.css';
 
-const Landing = () => { 
+const Landing = () => {
     return (
         <div className="landing">
             <h1>Welcome to Playerbase</h1>
