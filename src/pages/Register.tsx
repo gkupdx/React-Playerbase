@@ -85,7 +85,7 @@ const Register: FC<RegProps> = ({ loadPlayer }) => {
                     <input onChange={onConfirmChange} type="password" />
                 </div>
 
-                <button onClick={onRegSubmit} type="submit">Submit</button>
+                <button onClick={onRegSubmit} type="submit" className="primaryBtn">Submit</button>
             </div>
         </div>
     )
