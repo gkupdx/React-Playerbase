@@ -2,6 +2,14 @@
 @import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
 /* Major Mono Display 400 */
 @import url('https://fonts.googleapis.com/css2?family=Major+Mono+Display&family=VT323&display=swap');
+/* Courier Prime 400, 700 */
+@import url('https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&display=swap');
+
+:root {
+  --pb-primary: #ffcc4d;
+  --pb-secondary: green;
+  --pb-accent: violet;
+}
 
 * {
   box-sizing: border-box;
@@ -10,5 +18,22 @@
 }
 
 body {
-  font-family: 'Major Mono Display', monospace;
+  font-family: 'Courier Prime', monospace;
+}
+
+.primaryBtn {
+  width: 125px;
+  height: 60px;
+  background: #000;
+  color: green;
+  font-family: 'Courier Prime', monospace;
+  font-size: 1.1rem;
+  border: 1px solid green;
+  border-radius: 50px;
+  align-self: center;
+}
+
+.primaryBtn:hover {
+  cursor: pointer;
+  background-color: #FFF;
 }
