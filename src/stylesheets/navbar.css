@@ -16,7 +16,7 @@
 }
 
 .navbar img {
-    width: 215px;
+    width: 210px;
 }
 
 .navbar img:hover {
@@ -33,6 +33,6 @@
 
 .navbar a:hover {
     cursor: pointer;
-    color: violet;
+    color: var(--pb-primary);
     text-decoration: underline;
 }

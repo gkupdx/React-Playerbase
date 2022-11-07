@@ -7,8 +7,10 @@
 
 :root {
   --pb-primary: #ffcc4d;
-  --pb-secondary: green;
-  --pb-accent: violet;
+  --pb-secondary: limegreen;
+  --pb-error: #EF5B5B;
+  --pb-main-grey: #333;
+  --pb-sub-grey: #303030;
 }
 
 * {
@@ -25,15 +27,18 @@ body {
   width: 125px;
   height: 60px;
   background: #000;
-  color: green;
+  color: limegreen;
   font-family: 'Courier Prime', monospace;
   font-size: 1.1rem;
-  border: 1px solid green;
+  border: 1px solid limegreen;
   border-radius: 50px;
+  box-shadow: 0 5px #000;
   align-self: center;
 }
 
 .primaryBtn:hover {
   cursor: pointer;
-  background-color: #FFF;
+  background-color: var(--pb-primary);
+  border: 1px solid #000;
+  color: #000;
 }

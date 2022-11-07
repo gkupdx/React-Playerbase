@@ -16,14 +16,16 @@
 
 .loginForm {
     width: 400px;
-    height: 500px;
+    height: 450px;
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
-    background-color: darkgrey;
+    justify-content: space-evenly;
+    background: #303030;
+    color: #FFF;
     font-family: 'Courier Prime', monospace;
     font-size: 1.1rem;
-    box-shadow: 0 0 7px 2px #000;
+    box-shadow: 0 0 15px 0 #000;
+    border: 1px solid limegreen;
     border-radius: 10px;
 }
 
@@ -41,12 +43,13 @@
     height: 35px;
     font-family: 'Courier Prime', monospace;
     font-size: 1.1rem;
+    border: 1px solid var(--pb-primary);
     padding: 10px;
 }
 
 .loginForm p {
     width: 80%;
-    color: green;
+    color: var(--pb-error);
     font-size: 0.9rem;
     font-weight: bold;
     align-self: center;
