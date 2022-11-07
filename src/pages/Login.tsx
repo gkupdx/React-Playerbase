@@ -1,7 +1,6 @@
 //// Login.tsx - login page
 import { useNavigate } from 'react-router-dom';
-import { useState } from 'react';
-import { FC } from 'react';
+import { FC, useState } from 'react';
 import '../stylesheets/login.css';
 
 interface LoginProps {
@@ -12,7 +11,13 @@ interface LoginProps {
 const Login: FC<LoginProps> = ({ loadPlayer, checkLoggedIn }) => {
     const [emailField, setEmailField] = useState('');
     const [passwordField, setPasswordField] = useState('');
+    const [validateFields, setValidateFields] = useState(true);
     const navigate = useNavigate();
+    let errorMsgDisplay: DocumentVisibilityState = 'hidden';
+
+    if (validateFields === false) {
+        errorMsgDisplay = 'visible'
+    }
 
     const onEmailChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setEmailField(event.target.value);
@@ -37,6 +42,8 @@ const Login: FC<LoginProps> = ({ loadPlayer, checkLoggedIn }) => {
                 loadPlayer(player);
                 checkLoggedIn(true);
                 navigate(`/profile/${player.id}`);
+            } else {
+                setValidateFields(false);
             }
         })
     }
@@ -54,7 +61,9 @@ const Login: FC<LoginProps> = ({ loadPlayer, checkLoggedIn }) => {
                     <input onChange={onPasswordChange} type="password" />
                 </div>
 
-                <button onClick={onLoginSubmit} type="submit">Submit</button>
+                <p style={{ visibility: errorMsgDisplay }}>Sorry, the email or password is incorrect.</p>
+
+                <button onClick={onLoginSubmit} type="submit" className="primaryBtn">Submit</button>
             </div>
         </div>
     )
