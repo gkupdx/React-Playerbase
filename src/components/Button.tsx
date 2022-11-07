@@ -11,7 +11,7 @@ const Button: FC<BtnProps> = ({ route, name }) => {
     const navigate = useNavigate();
 
     return (
-        <button onClick={() => navigate(route)} className='button'>{name}</button>
+        <button onClick={() => navigate(route)} className='primaryBtn'>{name}</button>
     )
 }
 
