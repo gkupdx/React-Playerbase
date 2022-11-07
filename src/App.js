@@ -3,6 +3,7 @@ import { useState } from 'react';
 import Navbar from "./components/Navbar.tsx";
 import Landing from "./pages/Landing.tsx";
 import Login from "./pages/Login";
+import Logout from './pages/Logout';
 import Register from "./pages/Register";
 import Profile from './pages/Profile';
 
@@ -45,6 +46,12 @@ function App() {
           <>
             <Navbar loggedIn={loggedIn} />
             <Login loadPlayer={loadPlayer} checkLoggedIn={checkLoggedIn} />
+          </>
+        } />
+        <Route path='/logged-out' element={
+          <>
+            <Navbar loggedIn={loggedIn} />
+            <Logout />
           </>
         } />
         <Route path='/register' element={
