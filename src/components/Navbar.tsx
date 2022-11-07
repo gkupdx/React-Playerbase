@@ -1,6 +1,7 @@
 //// Navbar.tsx - "navbar" component
 import { FC } from 'react';
-import { VscHome, VscSignOut } from 'react-icons/vsc';
+import { useNavigate } from 'react-router-dom';
+import { VscSignOut } from 'react-icons/vsc';
 import { FaGithub, FaLinkedin } from 'react-icons/fa';
 import '../stylesheets/navbar.css';
 
@@ -9,6 +10,7 @@ interface NavProps {
 }
 
 const Navbar: FC<NavProps> = ({ loggedIn }) => {
+    const navigate = useNavigate();
     let logOutDisplay: DocumentVisibilityState = 'hidden';
 
     if (loggedIn) {
@@ -18,8 +20,8 @@ const Navbar: FC<NavProps> = ({ loggedIn }) => {
     return (
         <div className="navbar">
             <div>
-                <a href="/"><VscHome /> Home</a>
-                <a style={{ visibility: logOutDisplay }} href="/signed-out"><VscSignOut /> Log Out</a>
+                <img onClick={() => navigate('/')} src={require('../assets/playerbase_logo2.png')} alt="Playerbase" />
+                <a style={{ visibility: logOutDisplay }} href="/logged-out"><VscSignOut /> Log Out</a>
             </div>
             <div>
                 <a href="https://github.com/gkupdx/React-Playerbase"><FaGithub /> GitHub</a>
