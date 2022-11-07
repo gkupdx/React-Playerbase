@@ -13,7 +13,13 @@ const Register: FC<RegProps> = ({ loadPlayer }) => {
     const [regEmail, setRegEmail] = useState('');
     const [regPassword, setRegPassword] = useState('');
     const [passConfirm, setPassConfirm] = useState('');
+    const [matchPasswords, setMatchPasswords] = useState(true);
     const navigate = useNavigate();
+    let errorMsgDisplay: DocumentVisibilityState = 'hidden';
+
+    if (matchPasswords === false) {
+        errorMsgDisplay = 'visible'
+    }
 
     const onNameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setRegName(event.target.value);
@@ -56,7 +62,7 @@ const Register: FC<RegProps> = ({ loadPlayer }) => {
                     }
                 })
         } else {
-            console.log(`Passwords don't match.`);
+            setMatchPasswords(false);
         }
     }
 
@@ -84,6 +90,8 @@ const Register: FC<RegProps> = ({ loadPlayer }) => {
                     <label htmlFor="confirmPass">Confirm Password:</label>
                     <input onChange={onConfirmChange} type="password" />
                 </div>
+
+                <p style={{ visibility: errorMsgDisplay }}>Passwords do not match.</p>
 
                 <button onClick={onRegSubmit} type="submit" className="primaryBtn">Submit</button>
             </div>
