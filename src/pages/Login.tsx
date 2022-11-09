@@ -1,18 +1,20 @@
 //// Login.tsx - login page
 import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { authenticateUser } from '../features/authenticate';
 import { FC, useState } from 'react';
 import '../stylesheets/login.css';
 
 interface LoginProps {
     loadPlayer: (data: Object) => void,
-    checkLoggedIn: (status: boolean) => void,
 }
 
-const Login: FC<LoginProps> = ({ loadPlayer, checkLoggedIn }) => {
+const Login: FC<LoginProps> = ({ loadPlayer }) => {
     const [emailField, setEmailField] = useState('');
     const [passwordField, setPasswordField] = useState('');
     const [validateFields, setValidateFields] = useState(true);
     const navigate = useNavigate();
+    const dispatch = useDispatch();
     let errorMsgDisplay: DocumentVisibilityState = 'hidden';
 
     if (validateFields === false) {
@@ -39,8 +41,9 @@ const Login: FC<LoginProps> = ({ loadPlayer, checkLoggedIn }) => {
         .then(res => res.json())
         .then(player => {
             if (player.id) {
+                localStorage.setItem("LOGGED_IN", JSON.stringify(player));
+                dispatch(authenticateUser({ authenticated: player.id }));
                 loadPlayer(player);
-                checkLoggedIn(true);
                 navigate(`/profile/${player.id}`);
             } else {
                 setValidateFields(false);
