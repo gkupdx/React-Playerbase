@@ -1,5 +1,6 @@
 //// App.js
 import { useState } from 'react';
+import { useSelector } from 'react-redux';
 import Navbar from "./components/Navbar.tsx";
 import Landing from "./pages/Landing.tsx";
 import Login from "./pages/Login";
@@ -10,7 +11,7 @@ import Profile from './pages/Profile';
 import { Routes, Route } from 'react-router-dom';
 
 function App() {
-  const [loggedIn, setLoggedIn] = useState(false);
+  const authSelector = useSelector((state) => state.auth.value);
   const [player, setPlayer] = useState({
     id: '',
     name: '',
@@ -18,10 +19,6 @@ function App() {
     email: '',
     joined: ''
   });
-
-  const checkLoggedIn = (status) => {
-    setLoggedIn(status);
-  }
 
   const loadPlayer = (data) => {
     setPlayer({
@@ -38,32 +35,32 @@ function App() {
       <Routes>
         <Route path='/' element={
           <>
-            <Navbar loggedIn={loggedIn} />
+            <Navbar userID={authSelector.authenticated}/>
             <Landing />
           </>
         } />
         <Route path='/login' element={
           <>
-            <Navbar loggedIn={loggedIn} />
-            <Login loadPlayer={loadPlayer} checkLoggedIn={checkLoggedIn} />
+            <Navbar userID={authSelector.authenticated}/>
+            <Login loadPlayer={loadPlayer} />
           </>
         } />
         <Route path='/logged-out' element={
           <>
-            <Navbar loggedIn={loggedIn} />
+            <Navbar userID={authSelector.authenticated}/>
             <Logout />
           </>
         } />
         <Route path='/register' element={
           <>
-            <Navbar loggedIn={loggedIn}/>
+            <Navbar userID={authSelector.authenticated}/>
             <Register loadPlayer={loadPlayer}/>
           </>
         } />
         <Route path='/profile/:id' element={
           <>
-            <Navbar loggedIn={loggedIn}/>
-            <Profile player={player}/>
+            <Navbar userID={authSelector.authenticated}/>
+            <Profile player={player} setPlayer={setPlayer}/>
           </>
         } />
       </Routes>
