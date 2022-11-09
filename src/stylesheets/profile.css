@@ -5,36 +5,47 @@
     flex-direction: column;
     justify-content: space-evenly;
     align-items: center;
-    background-color: #333;
+    background-color: var(--pb-main-grey);
 }
 
 .profile h1 {
-    color: #FFF;
-    text-shadow: 0 0 5px limegreen;
+    color: var(--pb-white);
+    text-shadow: 0 0 4px var(--pb-primary);
+}
+
+.youtubeContainer {
+    width: 800px;
+    height: 500px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    box-shadow: 0 0 15px 0 #000;
 }
 
 .cardsContainer {
-    width: 900px;
-    height: 600px;
+    width: 1600px;
+    height: 400px;
     display: flex;
     justify-content: space-evenly;
     align-items: center;
     background-color: #303030;
-    border: 1px solid limegreen;
+    border: 1px solid var(--pb-primary);
     border-radius: 10px;
     box-shadow: 0 0 15px 0 #000;
 }
 
 .card {
-    width: 400px;
-    height: 500px;
+    width: 250px;
+    height: 350px;
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
+    justify-content: space-evenly;
     align-items: center;
-    background-color: dimgrey;
+    background-color: var(--pb-dim-grey);
+    color: var(--pb-white);
     font-family: 'Courier Prime', monospace;
-    font-size: 1.5rem;
+    font-size: 1.7rem;
     border-radius: 10px;
     box-shadow: 0 0 2px 2px #000;
 }

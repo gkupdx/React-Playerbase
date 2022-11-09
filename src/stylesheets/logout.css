@@ -5,12 +5,12 @@
     flex-direction: column;
     justify-content: space-evenly;
     align-items: center;
-    background-color: #333;
+    background-color: var(--pb-main-grey);
 }
 
 .logout h1 {
     font-size: 4rem;
-    color: #FFF;
+    color: var(--pb-white);
     text-align: center;
     text-shadow: 2px 5px #000;
 }
@@ -25,5 +25,5 @@
 
 .logout p {
     font-size: 1.1rem;
-    color: #FFF;
+    color: var(--pb-white);
 }

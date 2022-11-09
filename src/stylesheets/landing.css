@@ -5,7 +5,7 @@
     flex-direction: column;
     justify-content: space-evenly;
     align-items: center;
-    background-color: #333;
+    background-color: var(--pb-main-grey);
 }
 
 .headerContainer {
@@ -17,7 +17,7 @@
 }
 
 .headerContainer h2 {
-    color: #FFF;
+    color: var(--pb-white);
     font-family: 'Major Mono Display', monospace;
     font-size: 1.3rem;
     font-style: italic;
@@ -29,8 +29,8 @@
     display: flex;
     justify-content: space-evenly;
     align-items: center;
-    background-color: #303030;
-    border: 1px solid limegreen;
+    background-color: var(--pb-sub-grey);
+    border: 1px solid var(--pb-primary);
     box-shadow: 0 0 15px 0 #000;
     border-radius: 10px;
 }

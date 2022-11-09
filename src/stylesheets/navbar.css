@@ -4,7 +4,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #333;
+    background-color: var(--pb-main-grey);
     border-bottom: 1px solid #000;
 }
 
@@ -25,7 +25,7 @@
 
 .navbar a {
     width: fit-content;
-    color: #FFF;
+    color: var(--pb-white);
     font-family: 'Major Mono Display', monospace;
     font-size: 1.2rem;
     text-decoration: none;
