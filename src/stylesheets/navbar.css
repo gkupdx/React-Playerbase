@@ -36,3 +36,11 @@
     color: var(--pb-primary);
     text-decoration: underline;
 }
+
+.logOutHidden {
+    visibility: hidden;
+}
+
+.logOutVisible {
+    visibility: visible;
+}
