@@ -8,7 +8,7 @@ const Landing = () => {
         <div className="landing">
             <motion.div animate={{ x: 0, opacity: 1 }} initial={{ x: 400, opacity: 0.5 }} transition={{ type: "tween", duration: 0.4 }} className='headerContainer'>
                 <img src={require('../assets/playerbase_logo2.png')} alt="Main logo" />
-                <h2>design. build. explore.</h2>
+                <h2>your one-stop hub.</h2>
             </motion.div>
 
             <motion.div animate={{ x: 0, opacity: 1 }} initial={{ x: 400, opacity: 0.5 }} transition={{ type: "tween", duration: 0.5 }} className='btnContainer'>
