@@ -1,6 +1,7 @@
 //// Register.tsx - registration page
 import { useNavigate } from 'react-router-dom';
 import { useState, FC } from 'react';
+import { motion } from 'framer-motion';
 import '../stylesheets/register.css';
 
 interface RegProps {
@@ -68,8 +69,8 @@ const Register: FC<RegProps> = ({ loadPlayer }) => {
 
     return (
         <div className="register">
-            <h1>Register For a New Account</h1>
-            <div className="regForm">
+            <motion.h1 animate={{ x: 0, opacity: 1 }} initial={{ x: 200, opacity: 0.7 }} transition={{ type: "tween", duration: 0.5 }}>Register For a New Account</motion.h1>
+            <motion.div animate={{ x: 0, opacity: 1 }} initial={{ x: 200, opacity: 0.7 }} transition={{ type: "tween", duration: 0.5 }} className="regForm">
                 <div>
                     <label htmlFor="name">Name:</label>
                     <input onChange={onNameChange} type="text" />
@@ -94,7 +95,7 @@ const Register: FC<RegProps> = ({ loadPlayer }) => {
                 <p style={{ visibility: errorMsgDisplay }}>Passwords do not match.</p>
 
                 <button onClick={onRegSubmit} type="submit" className="primaryBtn">Submit</button>
-            </div>
+            </motion.div>
         </div>
     )
 }

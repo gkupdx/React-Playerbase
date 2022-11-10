@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { authenticateUser } from '../features/authenticate';
 import { FC, useState } from 'react';
+import { motion } from 'framer-motion';
 import '../stylesheets/login.css';
 
 interface LoginProps {
@@ -53,8 +54,8 @@ const Login: FC<LoginProps> = ({ loadPlayer }) => {
 
     return (
         <div className="login">
-            <h1>Login To Your Account</h1>
-            <div className="loginForm">
+            <motion.h1 animate={{ x: 0, opacity: 1 }} initial={{ x: 200, opacity: 0.7 }} transition={{ type: "tween", duration: 0.5 }}>Login To Your Account</motion.h1>
+            <motion.div animate={{ x: 0, opacity: 1 }} initial={{ x: 200, opacity: 0.7 }} transition={{ type: "tween", duration: 0.5 }} className="loginForm">
                 <div>
                     <label htmlFor="email">Email:</label>
                     <input onChange={onEmailChange} type="email" />
@@ -67,7 +68,7 @@ const Login: FC<LoginProps> = ({ loadPlayer }) => {
                 <p style={{ visibility: errorMsgDisplay }}>Sorry, the email or password is incorrect.</p>
 
                 <button onClick={onLoginSubmit} type="submit" className="primaryBtn">Submit</button>
-            </div>
+            </motion.div>
         </div>
     )
 }
