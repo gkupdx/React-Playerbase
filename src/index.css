@@ -22,6 +22,8 @@
 }
 
 body {
+  width: 100%;
+  background-color: var(--pb-main-grey);
   font-family: 'Courier Prime', monospace;
 }
 
