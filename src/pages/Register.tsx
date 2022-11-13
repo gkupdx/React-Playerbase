@@ -69,8 +69,8 @@ const Register: FC<RegProps> = ({ loadPlayer }) => {
 
     return (
         <div className="register">
-            <motion.h1 animate={{ x: 0, opacity: 1 }} initial={{ x: 200, opacity: 0.7 }} transition={{ type: "tween", duration: 0.5 }}>Register For a New Account</motion.h1>
-            <motion.div animate={{ x: 0, opacity: 1 }} initial={{ x: 200, opacity: 0.7 }} transition={{ type: "tween", duration: 0.5 }} className="regForm">
+            <motion.h1 animate={{ x: 0, opacity: 1 }} initial={{ x: 300, opacity: 0.7 }} transition={{ type: "tween", duration: 0.5 }}>Register For a New Account</motion.h1>
+            <motion.div animate={{ x: 0, opacity: 1 }} initial={{ x: 300, opacity: 0.7 }} transition={{ type: "tween", duration: 0.5 }} className="regForm">
                 <div>
                     <label htmlFor="name">Name:</label>
                     <input onChange={onNameChange} type="text" />
