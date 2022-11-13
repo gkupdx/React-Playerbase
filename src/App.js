@@ -4,9 +4,11 @@ import { useSelector } from 'react-redux';
 import Navbar from "./components/Navbar.tsx";
 import Landing from "./pages/Landing.tsx";
 import Login from "./pages/Login";
+import Account from './pages/Account';
 import Logout from './pages/Logout';
 import Register from "./pages/Register";
 import Profile from './pages/Profile';
+import Error from './pages/Error';
 
 import { Routes, Route } from 'react-router-dom';
 
@@ -45,6 +47,12 @@ function App() {
             <Login loadPlayer={loadPlayer} />
           </>
         } />
+        <Route path='/account/:id/update-info' element={
+          <>
+            <Navbar userID={authSelector.authenticated} />
+            <Account player={player} setPlayer={setPlayer} />
+          </>
+        } />
         <Route path='/logged-out' element={
           <>
             <Navbar userID={authSelector.authenticated}/>
@@ -63,6 +71,8 @@ function App() {
             <Profile player={player} setPlayer={setPlayer}/>
           </>
         } />
+        {/* Error page - for all other routes that DON'T match */}
+        <Route path='*' element={<Error />}/>
       </Routes>
     </div>
   );
