@@ -27,6 +27,16 @@ body {
   font-family: 'Courier Prime', monospace;
 }
 
+.pageContainer {
+  width: 100%;
+  height: 950px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  background-color: var(--pb-main-grey);
+}
+
 .primaryBtn {
   width: 125px;
   height: 60px;
