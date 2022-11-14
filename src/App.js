@@ -8,6 +8,7 @@ import Account from './pages/Account';
 import Logout from './pages/Logout';
 import Register from "./pages/Register";
 import Profile from './pages/Profile';
+import Success from './pages/Success';
 import Error from './pages/Error';
 
 import { Routes, Route } from 'react-router-dom';
@@ -69,6 +70,12 @@ function App() {
           <>
             <Navbar userID={authSelector.authenticated}/>
             <Profile player={player} setPlayer={setPlayer}/>
+          </>
+        } />
+        <Route path='/profile/:id/update-success' element={
+          <>
+            <Navbar userID={authSelector.authenticated}/>
+            <Success />
           </>
         } />
         {/* Error page - for all other routes that DON'T match */}
