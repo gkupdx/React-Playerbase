@@ -55,7 +55,7 @@ const Login: FC<LoginProps> = ({ loadPlayer }) => {
     return (
         <div className="login">
             <motion.h1 animate={{ x: 0, opacity: 1 }} initial={{ x: 300, opacity: 0.7 }} transition={{ type: "tween", duration: 0.5 }}>Login To Your Account</motion.h1>
-            
+
             <motion.div animate={{ x: 0, opacity: 1 }} initial={{ x: 300, opacity: 0.7 }} transition={{ type: "tween", duration: 0.5 }} className="loginForm">
                 <div>
                     <label htmlFor="email">Email:</label>
