@@ -9,32 +9,39 @@
 }
 
 .settingsBtn {
+    position: fixed;
+    top: 0;
+    right: 0;
+    margin-top: 100px;
     width: 125px;
     height: 50px;
     display: inline-flex;
     justify-content: space-evenly;
     align-items: center;
     background: transparent;
-    color: var(--pb-white);
+    color: var(--pb-primary);
     font-size: 1.3rem;
-    border: 1px solid var(--pb-white);
-    border-radius: 50px;
-    align-self: flex-end;
+    border: 1px solid var(--pb-primary);
+    border-top-left-radius: 25px;
+    border-bottom-left-radius: 25px;
+    box-shadow: 0 2px 5px 0 #000;
     z-index: 3;
 }
 
 .settingsBtn:hover {
     cursor: pointer;
-    color: var(--pb-primary);
-    border: 1px solid var(--pb-primary);
+    color: var(--pb-white);
+    border: 1px solid var(--pb-white);
 }
 
 .settingsModal {
     position: fixed;
+    top: 0;
     right: 0;
+    margin-top: 150px;
     margin-right: -200px;
-    width: 350px;
-    height: 500px;
+    width: 300px;
+    height: 150px;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
@@ -42,26 +49,6 @@
     background-color: var(--pb-sub-grey);
     box-shadow: 0 5px 15px 0 #000;
     z-index: 2;
-}
-
-.settingsModal > div {
-    width: 80%;
-    height: 250px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-    border: 1px solid var(--pb-primary);
-    border-radius: 5px;
-    padding: 10px;
-}
-
-.settingsModal h2 {
-    color: var(--pb-primary);
-}
-
-.settingsModal p {
-    color: var(--pb-white);
-    font-size: 1.2rem;
 }
 
 .settingsModal button {
@@ -99,4 +86,96 @@
     color: var(--pb-primary);
     text-shadow: 0 3px 5px #000;
     font-size: 2.5rem;
+}
+
+.account {
+    width: 100%;
+    height: 1000px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    background-color: var(--pb-main-grey);
+}
+
+.account h1 {
+    font-size: 4.5rem;
+    color: var(--pb-white);
+    text-shadow: 2px 5px #000;
+    text-align: center;
+}
+
+.account p {
+    width: 80%;
+    color: var(--pb-error);
+    font-size: 0.9rem;
+    font-weight: bold;
+    align-self: center;
+    text-align: center;
+}
+
+.account h4 {
+    color: var(--pb-white);
+    text-decoration: underline;
+}
+
+.account h4:hover {
+    cursor: pointer;
+    color: var(--pb-primary);
+}
+
+.updateForm {
+    width: 450px;
+    height: 500px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    background: var(--pb-sub-grey);
+    color: var(--pb-primary);
+    font-family: 'Courier Prime', monospace;
+    font-size: 1.1rem;
+    box-shadow: 0 0 15px 0 #000;
+    border: 1px solid var(--pb-primary);
+    border-radius: 10px;
+}
+
+.updateForm > div {
+    display: flex;
+    flex-direction: column;
+}
+
+.updateForm h2 {
+    color: var(--pb-white);
+    font-size: 1.2rem;
+    font-weight: normal;
+    width: 80%;
+    align-self: center;
+}
+
+.updateForm h3 {
+    color: var(--pb-dim-grey);
+    font-size: 1.1rem;
+    width: 80%;
+    align-self: center;
+}
+
+.updateForm h3:after {
+    display: block;
+    content: '';
+    width: 100%;
+    height: 1px;
+    background-color: var(--pb-dim-grey);
+}
+
+.updateForm label, input {
+    width: 80%;
+    align-self: center;
+}
+
+.updateForm input {
+    height: 35px;
+    font-family: 'Courier Prime', monospace;
+    font-size: 1.1rem;
+    border: 2px solid var(--pb-primary);
+    padding: 10px;
 }
