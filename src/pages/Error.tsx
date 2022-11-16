@@ -14,7 +14,7 @@ const Error = () => {
                 had its name changed, or is temporarily unavailable.
             </p>
 
-            <button onClick={() => navigate('/')} className='primaryBtn'>Return Home</button>
+            <button onClick={() => navigate('/')} className='primaryBtn'>Landing Page</button>
         </div>
     )
 }
