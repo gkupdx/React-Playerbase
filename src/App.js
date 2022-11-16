@@ -39,7 +39,7 @@ function App() {
         <Route path='/' element={
           <>
             <Navbar userID={authSelector.authenticated}/>
-            <Landing />
+            <Landing player={player} setPlayer={setPlayer}/>
           </>
         } />
         <Route path='/login' element={
