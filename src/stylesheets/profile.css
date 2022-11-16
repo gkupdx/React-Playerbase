@@ -3,7 +3,7 @@
     height: 950px;
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
+    justify-content: space-evenly;
     align-items: center;
     background-color: var(--pb-main-grey);
 }
@@ -41,7 +41,7 @@
     margin-top: 150px;
     margin-right: -200px;
     width: 300px;
-    height: 150px;
+    height: 200px;
     display: flex;
     flex-direction: column;
     justify-content: space-around;

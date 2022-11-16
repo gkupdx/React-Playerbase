@@ -8,6 +8,16 @@
     background-color: var(--pb-main-grey);
 }
 
+.landing h3 {
+    color: var(--pb-white);
+    font-weight: normal;
+    text-align: center;
+}
+
+.landing p {
+    color: var(--pb-dim-grey);
+}
+
 .headerContainer {
     width: fit-content;
     height: 200px;
@@ -24,7 +34,7 @@
 }
 
 .btnContainer {
-    width: 450px;
+    width: 500px;
     height: 200px;
     display: flex;
     justify-content: space-evenly;
