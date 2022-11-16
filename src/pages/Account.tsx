@@ -5,6 +5,7 @@ import { useDispatch } from 'react-redux';
 import { motion } from 'framer-motion';
 import { FaArrowAltCircleLeft } from 'react-icons/fa';
 import { authenticateUser } from '../features/authenticate';
+import { checkLoginStatus } from '../utilities/checkLoginUtility';
 
 interface AccountProps {
     player: {
@@ -39,11 +40,7 @@ const Account: FC<AccountProps> = ({ player, setPlayer }) => {
     }
 
     useEffect(() => {
-        const isLoggedIn = localStorage.getItem("LOGGED_IN");
-        if (isLoggedIn) {
-            const playerInfo = JSON.parse(isLoggedIn);
-            setPlayer(playerInfo);
-        }
+        checkLoginStatus(setPlayer);
     }, [setPlayer]);
 
     const onUpdateSubmit = () => {
