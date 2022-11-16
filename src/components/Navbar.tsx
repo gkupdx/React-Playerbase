@@ -1,37 +1,19 @@
 //// Navbar.tsx - "navbar" component
-import { FC } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
-import { authenticateUser } from '../features/authenticate';
-import { VscSignOut } from 'react-icons/vsc';
+import { motion } from 'framer-motion';
 import { FaGithub, FaLinkedin } from 'react-icons/fa';
 import '../stylesheets/navbar.css';
 
-interface NavProps {
-    userID: number,
-}
-
-const Navbar: FC<NavProps> = ({ userID }) => {
-    const navigate = useNavigate();
-    const dispatch = useDispatch();
-
-    // on log out, hide "Log Out" link, clear localStorage item
-    const handleLogOut = () => {
-        localStorage.removeItem("LOGGED_IN");
-        dispatch(authenticateUser({ authenticated: 0 }));
-    } 
-
+const Navbar = () => {
     return (
-        <div className="navbar">
+        <motion.div animate={{ opacity: 1 }} initial={{ opacity: 0 }} transition={{ type: "tween", duration: 0.7 }} className="navbar">
             <div>
-                <img onClick={() => navigate('/')} src={require('../assets/playerbase_logo2.png')} alt="Playerbase" />
-                <a onClick={handleLogOut} className={userID !== 0 ? 'logOutVisible' : 'logOutHidden'} href="/logged-out"><VscSignOut /> log out</a>
+                <a href="/"><img src={require('../assets/playerbase_logo2.png')} alt="Playerbase" /></a>
             </div>
             <div>
                 <a href="https://github.com/gkupdx/React-Playerbase"><FaGithub /> github</a>
                 <a href="https://www.linkedin.com/in/gkupdx/"><FaLinkedin /> linkedin</a>
             </div>
-        </div>
+        </motion.div>
     )
 }
 
