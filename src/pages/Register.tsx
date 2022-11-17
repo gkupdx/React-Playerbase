@@ -1,5 +1,7 @@
 //// Register.tsx - registration page
 import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { authenticateUser } from '../features/authenticate';
 import { useState, FC } from 'react';
 import { motion } from 'framer-motion';
 import '../stylesheets/register.css';
@@ -16,6 +18,7 @@ const Register: FC<RegProps> = ({ loadPlayer }) => {
     const [passConfirm, setPassConfirm] = useState('');
     const [matchPasswords, setMatchPasswords] = useState(true);
     const navigate = useNavigate();
+    const dispatch = useDispatch();
     let errorMsgDisplay: DocumentVisibilityState = 'hidden';
 
     if (matchPasswords === false) {
@@ -58,6 +61,8 @@ const Register: FC<RegProps> = ({ loadPlayer }) => {
                 .then(res => res.json())
                 .then(player => {
                     if (player) {
+                        localStorage.setItem("LOGGED_IN", JSON.stringify(player));
+                        dispatch(authenticateUser({ authenticated: player.id }))
                         loadPlayer(player);
                         navigate(`/profile/${player.id}`);
                     }
