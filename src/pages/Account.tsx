@@ -1,11 +1,10 @@
 //// Account.tsx - account update page
-import { FC, useState, useEffect } from 'react';
+import { FC, useState} from 'react';
 import { useNavigate } from 'react-router';
 import { useDispatch } from 'react-redux';
 import { motion } from 'framer-motion';
 import { FaArrowAltCircleLeft } from 'react-icons/fa';
 import { authenticateUser } from '../features/authenticate';
-import { checkLoginStatus } from '../utilities/checkLoginUtility';
 
 interface AccountProps {
     player: {
@@ -15,10 +14,9 @@ interface AccountProps {
         email: string,
         joined: string,
     },
-    setPlayer: (data: object) => void,
 }
 
-const Account: FC<AccountProps> = ({ player, setPlayer }) => {
+const Account: FC<AccountProps> = ({ player }) => {
     const [newPassword, setNewPassword] = useState('');
     const [passConfirm, setPassConfirm] = useState('');
     const [matchPasswords, setMatchPasswords] = useState(true);
@@ -38,10 +36,6 @@ const Account: FC<AccountProps> = ({ player, setPlayer }) => {
     const onConfirmChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setPassConfirm(event.target.value);
     }
-
-    useEffect(() => {
-        checkLoginStatus(setPlayer);
-    }, [setPlayer]);
 
     const onUpdateSubmit = () => {
         // check that new passwords match
