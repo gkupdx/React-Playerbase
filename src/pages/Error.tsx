@@ -1,10 +1,8 @@
 //// Error.tsx - the "404" error page for when a user tries to brute-force a URL endpoint
-import { useNavigate } from 'react-router-dom';
+import Button from '../components/Button';
 import '../stylesheets/error.css';
 
 const Error = () => {
-    const navigate = useNavigate(); 
-
     return (
         <div className="error">
             <h1>404</h1>
@@ -14,7 +12,7 @@ const Error = () => {
                 had its name changed, or is temporarily unavailable.
             </p>
 
-            <button onClick={() => navigate('/')} className='primaryBtn'>Landing Page</button>
+            <Button route={'/'} name={'Landing Page'}/>
         </div>
     )
 }
