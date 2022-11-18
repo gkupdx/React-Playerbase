@@ -1,12 +1,16 @@
 //// Card.tsx - card component
 import { FC } from 'react';
+import { useNavigate } from 'react-router';
 
 interface CardProps {
+    route: string,
     name: string,
     icon: JSX.Element
 }
 
-const Card: FC<CardProps> = ({ name, icon }) => {
+const Card: FC<CardProps> = ({ route, name, icon }) => {
+    const navigate = useNavigate();
+
     const cardStyle: React.CSSProperties = {
         width: '225px',
         height: '325px',
@@ -23,7 +27,7 @@ const Card: FC<CardProps> = ({ name, icon }) => {
     }
 
     return (
-        <div style={cardStyle}>
+        <div onClick={() => navigate(route)} style={cardStyle}>
             {name}
             {icon}
         </div>
