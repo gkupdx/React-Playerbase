@@ -9,20 +9,20 @@
 }
 
 .error h1 {
-    font-size: 4.5rem;
-    color: var(--pb-white);
+    font-size: 10rem;
+    color: var(--pb-error);
     text-shadow: 2px 5px #000;
 }
 
 .error h2 {
-    font-size: 4rem;
+    font-size: 5rem;
     color: var(--pb-white);
     text-shadow: 2px 5px #000;
 }
 
 .error p {
     width: 80%;
-    color: var(--pb-error);
+    color: var(--pb-white);
     font-size: 0.9rem;
     font-weight: bold;
     align-self: center;

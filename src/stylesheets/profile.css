@@ -72,6 +72,39 @@
     color: #000;
 }
 
+.deleteModal {
+    position: fixed;
+    top: 0;
+    right: 0;
+    margin-right: -200px;
+    margin-top: 200px;
+    width: 300px;
+    height: 250px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    background-color: var(--pb-sub-grey);
+    box-shadow: 0 5px 15px 0 #000;
+    z-index: 1;
+}
+
+.deleteModal h3 {
+    color: var(--pb-white);
+    font-weight: normal;
+    text-align: center;
+}
+
+.deleteModal p {
+    color: var(--pb-error);
+    text-align: center;
+}
+
+.deleteModal > button:hover {
+    background-color: var(--pb-error);
+    color: var(--pb-white);
+}
+
 .headerContainer {
     width: 700px;
     height: 125px;
