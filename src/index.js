@@ -7,12 +7,14 @@ import { configureStore } from '@reduxjs/toolkit';
 import { Provider } from 'react-redux';
 import formReducer from './features/form';
 import authReducer from './features/authenticate';
+import playerReducer from './features/player';
 import { BrowserRouter } from 'react-router-dom';
 
-const store = configureStore({
+export const store = configureStore({
   reducer: {
     form: formReducer,
     auth: authReducer,
+    player: playerReducer,
   }
 });
 
