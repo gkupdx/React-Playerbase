@@ -1,6 +1,9 @@
 //// App.js
-import { useState } from 'react';
+import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
+import { useAppDispatch } from './utilities/reduxTypesUtil';
+import { checkLoginStatus } from './utilities/checkLoginUtil';
+import { initPlayer } from './features/player';
 import Navbar from "./components/Navbar.tsx";
 import Landing from "./pages/Landing.tsx";
 import Login from "./pages/Login";
@@ -8,74 +11,89 @@ import Account from './pages/Account';
 import Logout from './pages/Logout';
 import Register from "./pages/Register";
 import Profile from './pages/Profile';
+import Metagame from './pages/Metagame';
 import Success from './pages/Success';
+import DeleteAccount from './pages/DeleteAccount';
 import Error from './pages/Error';
 
 import { Routes, Route } from 'react-router-dom';
 
 function App() {
+  const playerSelector = useSelector((state) => state.player.value);
   const authSelector = useSelector((state) => state.auth.value);
-  const [player, setPlayer] = useState({
-    id: '',
-    name: '',
-    username: '',
-    email: '',
-    joined: ''
-  });
+  const dispatch = useAppDispatch();
 
   const loadPlayer = (data) => {
-    setPlayer({
+    dispatch(initPlayer({ 
       id: data.id,
       name: data.name,
       username: data.username,
       email: data.email,
       joined: data.joined
-    })
+    }));
   }
+
+  // on load, check to see if a user is logged in already
+  useEffect(() => {
+    checkLoginStatus(dispatch);
+  }, [dispatch]);
+
 
   return (
     <div className="App">
       <Routes>
         <Route path='/' element={
           <>
-            <Navbar userID={authSelector.authenticated}/>
-            <Landing player={player} setPlayer={setPlayer}/>
+            <Navbar />
+            <Landing player={playerSelector} auth={authSelector}/>
           </>
         } />
         <Route path='/login' element={
           <>
-            <Navbar userID={authSelector.authenticated}/>
+            <Navbar />
             <Login loadPlayer={loadPlayer} />
           </>
         } />
         <Route path='/account/:id/update-info' element={
           <>
-            <Navbar userID={authSelector.authenticated} />
-            <Account player={player} setPlayer={setPlayer} />
+            <Navbar />
+            <Account player={playerSelector} initPlayer={initPlayer} />
           </>
         } />
         <Route path='/logged-out' element={
           <>
-            <Navbar userID={authSelector.authenticated}/>
+            <Navbar />
             <Logout />
           </>
         } />
         <Route path='/register' element={
           <>
-            <Navbar userID={authSelector.authenticated}/>
+            <Navbar />
             <Register loadPlayer={loadPlayer}/>
           </>
         } />
         <Route path='/profile/:id' element={
           <>
-            <Navbar userID={authSelector.authenticated}/>
-            <Profile player={player} setPlayer={setPlayer}/>
+            <Navbar />
+            <Profile player={playerSelector} />
+          </>
+        } />
+        <Route path='/metagame' element={
+          <>
+            <Navbar />
+            <Metagame />
           </>
         } />
         <Route path='/profile/:id/update-success' element={
           <>
-            <Navbar userID={authSelector.authenticated}/>
+            <Navbar />
             <Success />
+          </>
+        } />
+        <Route path='/account-deleted' element={
+          <>
+            <Navbar />
+            <DeleteAccount />
           </>
         } />
         {/* Error page - for all other routes that DON'T match */}
