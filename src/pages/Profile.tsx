@@ -8,7 +8,7 @@ import { authenticateUser } from '../features/authenticate';
 import { initPlayer } from '../features/player';
 import { checkPageRefresh } from '../utilities/checkLoginUtil';
 
-import CardContainer from '../components/CardContainer';
+import ContentContainer from '../components/ContentContainer';
 import '../stylesheets/profile.css';
 
 interface ProfileProps {
@@ -74,7 +74,7 @@ const Profile: FC<ProfileProps> = ({ player }) => {
 
     return (
         <div className='profile'>
-            <motion.button animate={{ x: 0, opacity: 1 }} initial={{ x: 300, opacity: 0.7 }} transition={{ type: "tween", duration: 0.4 }} onClick={() => setToggleSettings(!toggleSettings)} className='settingsBtn'><VscGear style={{ fontSize: '1.4rem' }} />
+            <motion.button animate={{ x: 0, opacity: 1 }} initial={{ x: 300, opacity: 0.7 }} transition={{ type: "tween", duration: 0.5 }} onClick={() => setToggleSettings(!toggleSettings)} className='settingsBtn'><VscGear style={{ fontSize: '1.4rem' }} />
                 Settings
             </motion.button>
             <AnimatePresence>
@@ -111,7 +111,7 @@ const Profile: FC<ProfileProps> = ({ player }) => {
                 <h1>Welcome back, {player.username}!</h1>
             </motion.div>
 
-            <CardContainer id={player.id}/>
+            <ContentContainer id={player.id}/>
         </div>
     )
 }
