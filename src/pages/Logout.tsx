@@ -5,14 +5,14 @@ import "../stylesheets/logout.css";
 
 const Logout = () => {
     return (
-        <motion.div animate={{ x: 0, opacity: 1 }} initial={{ x: 300, opacity: 0.7 }} transition={{ type: "tween", duration: 0.5 }} className="logout">
-            <h1>You Have Successfully<br />Logged Out!</h1>
+        <div className="logout">
+            <motion.h1 animate={{ x: 0, opacity: 1 }} initial={{ x: 300, opacity: 0.7 }} transition={{ type: "tween", duration: 0.5 }}>You Have Successfully<br />Logged Out!</motion.h1>
 
-            <div>
+            <motion.div animate={{ x: 0, opacity: 1 }} initial={{ x: 300, opacity: 0.7 }} transition={{ type: "tween", duration: 0.5 }}>
                 <p>Not what you were looking for?</p>
                 <Button route={"/login"} name={"Log In"} />
-            </div>
-        </motion.div>
+            </motion.div>
+        </div>
     )
 }
 
