@@ -11,7 +11,6 @@ import Account from './pages/Account';
 import Logout from './pages/Logout';
 import Register from "./pages/Register";
 import Profile from './pages/Profile';
-import Metagame from './pages/Metagame';
 import Success from './pages/Success';
 import DeleteAccount from './pages/DeleteAccount';
 import Error from './pages/Error';
@@ -76,12 +75,6 @@ function App() {
           <>
             <Navbar />
             <Profile player={playerSelector} />
-          </>
-        } />
-        <Route path='/metagame' element={
-          <>
-            <Navbar />
-            <Metagame />
           </>
         } />
         <Route path='/profile/:id/update-success' element={
