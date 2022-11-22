@@ -10,7 +10,7 @@ const Section: FC<SectionProps> = ({ name, icon }) => {
 
     const sectionStyle: React.CSSProperties = {
         width: '800px',
-        height: '500px',
+        height: '200px',
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'space-evenly',
