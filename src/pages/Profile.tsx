@@ -111,7 +111,7 @@ const Profile: FC<ProfileProps> = ({ player }) => {
                 <h1>Welcome back, {player.username}!</h1>
             </motion.div>
 
-            <ContentContainer id={player.id}/>
+            <ContentContainer />
         </div>
     )
 }
