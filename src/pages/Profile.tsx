@@ -111,7 +111,23 @@ const Profile: FC<ProfileProps> = ({ player }) => {
                 <h1>Welcome back, {player.username}!</h1>
             </motion.div>
 
-            <ContentContainer />
+            <div className='container'>
+                <motion.div animate={{ y: 0, opacity: 1 }} initial={{ y: 300, opacity: 0.7 }} transition={{ type: "tween", duration: 0.8 }} className='cardSearchBox'>
+                    <div>
+                        <label htmlFor="searchBox">Search for a card to add:</label>
+                        <input type="text" placeholder="Enter exact card name..." />
+                        <p>Tip: Don't forget to include commas!</p>
+                    </div>
+
+                    <div className='cardPreview'>
+                        <span>A preview of your card will appear here</span>
+                    </div>
+
+                    <button>Add To Deck</button>
+                </motion.div>
+                <ContentContainer />
+            </div>
+
         </div>
     )
 }
