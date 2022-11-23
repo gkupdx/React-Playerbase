@@ -5,6 +5,7 @@ import { useDispatch } from 'react-redux';
 import { motion } from 'framer-motion';
 import { FaArrowAltCircleLeft } from 'react-icons/fa';
 import { authenticateUser } from '../features/authenticate';
+import '../stylesheets/account.css';
 
 interface AccountProps {
     player: {
