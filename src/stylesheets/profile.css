@@ -125,11 +125,12 @@
     width: 100%;
     display: flex;
     justify-content: space-evenly;
+    background-color: var(--pb-sub-grey);
 }
 
 .cardSearchBox {
     width: 350px;
-    height: 600px;
+    height: 700px;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
@@ -163,8 +164,8 @@
 }
 
 .cardPreview {
-    width: 80%;
-    height: 325px;
+    width: 250px;
+    height: 350px;
     color: var(--pb-dim-grey);
     font-size: 0.9rem;
     text-align: center;
