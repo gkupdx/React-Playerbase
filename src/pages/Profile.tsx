@@ -1,13 +1,14 @@
 //// Profile.tsx - profile page
 import { VscGear } from 'react-icons/vsc';
 import { motion, AnimatePresence } from 'framer-motion';
-import { FC, useState, useEffect } from 'react';
+import React, { FC, useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router';
 import { useDispatch } from 'react-redux';
 import { authenticateUser } from '../features/authenticate';
 import { initPlayer } from '../features/player';
 import { checkPageRefresh } from '../utilities/checkLoginUtil';
 
+import * as Scry from 'scryfall-sdk';
 import ContentContainer from '../components/ContentContainer';
 import '../stylesheets/profile.css';
 
@@ -21,9 +22,13 @@ interface ProfileProps {
     },
 }
 
+type CardImage = string | undefined; // utility type to work with Scryfall-SDK image URIs
+
 const Profile: FC<ProfileProps> = ({ player }) => {
     const [toggleSettings, setToggleSettings] = useState(false);
     const [deleteModal, setDeleteModal] = useState(false);
+    const [searchBoxInput, setSearchBoxInput] = useState('');
+    const [cardImage, setCardImage] = useState('');
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const { id } = useParams();
@@ -65,6 +70,24 @@ const Profile: FC<ProfileProps> = ({ player }) => {
                 navigate('/account-deleted')
             })
             .catch(error => console.log(error))
+    }
+
+    const onCardInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setSearchBoxInput(event.target.value);
+    }
+
+    const onCardSearch = async () => {
+        try {
+            const card = await Scry.Cards.byName(searchBoxInput);
+            const imageURI: CardImage = (card.image_uris?.normal);
+
+            if (imageURI) {
+                const imageSrc = imageURI.toString();
+                setCardImage(imageSrc);
+            }
+        } catch (error) {
+            setCardImage("Not Found");
+        }
     }
 
     // check to see if a user is logged in on page refresh
@@ -115,16 +138,20 @@ const Profile: FC<ProfileProps> = ({ player }) => {
                 <motion.div animate={{ y: 0, opacity: 1 }} initial={{ y: 300, opacity: 0.7 }} transition={{ type: "tween", duration: 0.8 }} className='cardSearchBox'>
                     <div>
                         <label htmlFor="searchBox">Search for a card to add:</label>
-                        <input type="text" placeholder="Enter exact card name..." />
+                        <input onChange={onCardInputChange} type="text" placeholder="Enter exact card name..." />
+                        <button onClick={onCardSearch}>Search</button>
                         <p>Tip: Don't forget to include commas!</p>
                     </div>
 
                     <div className='cardPreview'>
-                        <span>A preview of your card will appear here</span>
+                        {cardImage && <img src={cardImage} alt="Card" />}
+                        {cardImage === '' && <span>A preview of your card will appear here</span>}
+                        {cardImage === 'Not Found' && <span>Something went wrong. Please check to make sure the spelling is correct.</span>}
                     </div>
 
                     <button>Add To Deck</button>
                 </motion.div>
+
                 <ContentContainer />
             </div>
 
