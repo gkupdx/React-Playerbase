@@ -33,7 +33,7 @@ const Landing: FC<LandingProps> = ({ player, auth }) => {
                 :
                 <motion.div animate={{ y: 0, opacity: 1 }} initial={{ y: 400, opacity: 0.7 }} transition={{ type: "tween", duration: 0.8 }} style={{ flexDirection: 'column'}} className='btnContainer'>
                     <h3>Hey <span style={{ color: '#EF5B5B' }}>{player.username}</span>, got new decks to brew?</h3>
-                    <Button route={`/profile/${player.id}`} name={"Back To Brewing!"} />
+                    <Button route={`/profile/${player.id}`} name={"Back To Profile"} />
                 </motion.div>
             }
 
