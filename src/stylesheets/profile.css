@@ -215,7 +215,7 @@
     border: 1px solid var(--pb-dim-grey);
 }
 
-.deck {
+.deckHeader {
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
@@ -227,16 +227,11 @@
     transition: box-shadow 0.3s;
 }
 
-.deck h2 {
+.deckHeader h2 {
     color: var(--pb-primary);
     font-size: 2.5rem;
     text-align: center;
     text-shadow: 0 2px 5px #000;
-}
-
-.deck > div {
-    width: 100%;
-    height: 400px;
 }
 
 .deckColors {
