@@ -1,12 +1,18 @@
 //// CardContainer.tsx - card container component
 import { motion } from 'framer-motion';
+import { FC } from 'react';
 import { GiCardBurn } from 'react-icons/gi';
 
 import Deck from './Deck';
+import DeckColor from './DeckColor';
 import ScrollWrapper from './ScrollWrapper';
 import nicolBolas from '../assets/planeswalkers/nicol_bolas_grixis.jpg';
 
-const ContentContainer = () => {
+interface DeckContainerProps {
+    deckName: string,
+}
+
+const DeckContainer: FC<DeckContainerProps> = ({ deckName }) => {
     const iconStyle: React.CSSProperties = {
         fontSize: '5rem',
         color: '#ffcc4d',
@@ -20,11 +26,16 @@ const ContentContainer = () => {
                 <GiCardBurn style={iconStyle} />
 
                 <ScrollWrapper>
-                    <Deck deckName={'Grixis Midrange'} bgImageUrl={nicolBolas}/>
+                    <div className='deckHeader' style={{ backgroundImage: `url(${nicolBolas})`, backgroundPosition: 'center', backgroundSize: 'cover' }}>
+                        <h2>Grixis Midrange</h2>
+                        <DeckColor deckName={deckName}/>
+                    </div>
+
+                    <Deck deckName={'Grixis Midrange'} />
                 </ScrollWrapper>
             </div>
         </motion.div>
     )
 }
 
-export default ContentContainer;
+export default DeckContainer;
