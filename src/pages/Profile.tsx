@@ -9,7 +9,8 @@ import { initPlayer } from '../features/player';
 import { checkPageRefresh } from '../utilities/checkLoginUtil';
 
 import * as Scry from 'scryfall-sdk';
-import ContentContainer from '../components/ContentContainer';
+import DeckContainer from '../components/DeckContainer';
+import Card from '../components/Card';
 import '../stylesheets/profile.css';
 
 interface ProfileProps {
@@ -144,7 +145,7 @@ const Profile: FC<ProfileProps> = ({ player }) => {
                     </div>
 
                     <div className='cardPreview'>
-                        {cardImage && <img src={cardImage} alt="Card" />}
+                        {cardImage && <Card cardImage={cardImage}/>}
                         {cardImage === '' && <span>A preview of your card will appear here</span>}
                         {cardImage === 'Not Found' && <span>Something went wrong. Please check to make sure the spelling is correct.</span>}
                     </div>
@@ -152,7 +153,7 @@ const Profile: FC<ProfileProps> = ({ player }) => {
                     <button>Add To Deck</button>
                 </motion.div>
 
-                <ContentContainer />
+                <DeckContainer deckName={'Grixis Midrange'}/>
             </div>
 
         </div>
