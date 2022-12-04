@@ -1,6 +1,6 @@
 //// DeckColor.tsx - component for showing the color icons used in a deck
 import { FC, useState, useEffect } from 'react';
-import { checkDeckColor } from '../utilities/checkDeckColorUtil';
+import { checkDeckColor } from '../utilities/checkDeckInfoUtil';
 // import white from '../assets/colors/mtg_white.jpg';
 import blue from '../assets/colors/mtg_blue.jpg';
 import black from '../assets/colors/mtg_black.jpg';
@@ -12,21 +12,21 @@ interface DeckColorProps {
 }
 
 const DeckColor: FC<DeckColorProps> = ({ deckName }) => {
-    const [colorsArray, setColorsArray] = useState(['']);
+    const [deckColors, setDeckColors] = useState(['']);
 
     useEffect(() => {
         let colorString: string = '';
         colorString = checkDeckColor(deckName);
 
         if (colorString === 'UBR') {
-            setColorsArray([blue, black, red]);
+            setDeckColors([blue, black, red]);
         }
-    }, [deckName, setColorsArray]);
+    }, [deckName, setDeckColors]);
 
     return (
         <div>
-            {colorsArray.map((color) => {
-                return <img width='25px' height='25px' src={color} alt='Color'/>
+            {deckColors.map((color) => {
+                return <img key={color} width='25px' height='25px' src={color} alt='Color'/>
             })}
         </div>
     )
