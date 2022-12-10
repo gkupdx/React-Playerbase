@@ -10,7 +10,7 @@ import { checkPageRefresh } from '../utilities/checkLoginUtil';
 
 import * as Scry from 'scryfall-sdk';
 import DeckContainer from '../components/DeckContainer';
-import Card from '../components/Card';
+import CardSearchBox from '../components/CardSearchBox';
 import '../stylesheets/profile.css';
 
 interface ProfileProps {
@@ -23,13 +23,18 @@ interface ProfileProps {
     },
 }
 
-type CardImage = string | undefined; // utility type to work with Scryfall-SDK image URIs
+type ImageURI = string | undefined; // utility type to work with Scryfall-SDK image URIs
 
 const Profile: FC<ProfileProps> = ({ player }) => {
     const [toggleSettings, setToggleSettings] = useState(false);
     const [deleteModal, setDeleteModal] = useState(false);
-    const [searchBoxInput, setSearchBoxInput] = useState('');
-    const [cardImage, setCardImage] = useState('');
+    const [searchBoxInput, setSearchBoxInput] = useState("");
+    const [cardImage, setCardImage] = useState("");
+    const [cardList, setCardList] = useState([{
+        id: 0,
+        cardName: "",
+        cardImageUri: "",
+    }]);
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const { id } = useParams();
@@ -74,20 +79,46 @@ const Profile: FC<ProfileProps> = ({ player }) => {
     }
 
     const onCardInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setSearchBoxInput(event.target.value);
+        // capitalizing the first letter of each word
+        let inputString = event.target.value.toLowerCase().split(' ');
+        for (let i = 0; i < inputString.length; ++i) {
+            inputString[i] = inputString[i].charAt(0).toUpperCase() + inputString[i].substring(1);
+        }
+
+        setSearchBoxInput(inputString.join(' '));
     }
 
     const onCardSearch = async () => {
-        try {
-            const card = await Scry.Cards.byName(searchBoxInput);
-            const imageURI: CardImage = (card.image_uris?.normal);
+        const card = await Scry.Cards.byName(searchBoxInput);
+        const imageURI: ImageURI = (card.image_uris?.normal);
 
-            if (imageURI) {
-                const imageSrc = imageURI.toString();
-                setCardImage(imageSrc);
-            }
-        } catch (error) {
+        if (imageURI) {
+            const imageSrc = imageURI.toString();
+            setCardImage(imageSrc);
+        } else {
             setCardImage("Not Found");
+        }
+    }
+
+    const onCardAdd = () => {
+        // check to make sure the searched card exists & is successfully displayed
+        if (cardImage) {
+           // check to see if card list is in default state 
+           if (cardList[0].id === 0) {
+                setCardList([{
+                    id: 1,
+                    cardName: searchBoxInput,
+                    cardImageUri: cardImage,
+                }]);
+           } else {
+                const newCardId = Math.floor(Math.random() * 10000); // need to fix this later
+                const newCard = {
+                    id: newCardId,
+                    cardName: searchBoxInput,
+                    cardImageUri: cardImage,
+                }
+                setCardList([...cardList, newCard]);
+           }
         }
     }
 
@@ -131,29 +162,16 @@ const Profile: FC<ProfileProps> = ({ player }) => {
                     </motion.div>}
             </AnimatePresence>
 
+            {/* "Welcome, player_username" */}
             <motion.div animate={{ y: 0, opacity: 1 }} initial={{ y: 300, opacity: 0.7 }} transition={{ type: "tween", duration: 0.6 }} className='headerContainer'>
                 <h1>Welcome back, {player.username}!</h1>
             </motion.div>
 
+            {/* Card search + add feature & visible deck list */}
             <div className='container'>
-                <motion.div animate={{ y: 0, opacity: 1 }} initial={{ y: 300, opacity: 0.7 }} transition={{ type: "tween", duration: 0.8 }} className='cardSearchBox'>
-                    <div>
-                        <label htmlFor="searchBox">Search for a card to add:</label>
-                        <input onChange={onCardInputChange} type="text" placeholder="Enter exact card name..." />
-                        <button onClick={onCardSearch}>Search</button>
-                        <p>Tip: Don't forget to include commas!</p>
-                    </div>
+                <CardSearchBox cardImage={cardImage} onCardInputChange={onCardInputChange} onCardSearch={onCardSearch} onCardAdd={onCardAdd} />
 
-                    <div className='cardPreview'>
-                        {cardImage && <Card cardImage={cardImage}/>}
-                        {cardImage === '' && <span>A preview of your card will appear here</span>}
-                        {cardImage === 'Not Found' && <span>Something went wrong. Please check to make sure the spelling is correct.</span>}
-                    </div>
-
-                    <button>Add To Deck</button>
-                </motion.div>
-
-                <DeckContainer deckName={'Grixis Midrange'}/>
+                <DeckContainer deckName={'Grixis Midrange'} cardList={cardList}/>
             </div>
 
         </div>
