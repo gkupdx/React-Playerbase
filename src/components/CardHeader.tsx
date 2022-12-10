@@ -2,17 +2,17 @@
 import { FC } from 'react';
 
 interface CardHeaderProps {
-    cardHeader: string,
+    imageSrc: string,
 }
 
-const CardHeader: FC<CardHeaderProps> = ({ cardHeader }) => {
+const CardHeader: FC<CardHeaderProps> = ({ imageSrc }) => {
     const cardHeaderStyle: React.CSSProperties = {
         width: '150px',
         height: '200px',
     }
 
     return (
-        <img style={cardHeaderStyle} src={cardHeader} alt='Card Header'/>
+        <img style={cardHeaderStyle} src={imageSrc} alt='Card Header'/>
     )
 }
 
