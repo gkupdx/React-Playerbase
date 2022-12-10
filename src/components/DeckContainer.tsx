@@ -10,9 +10,10 @@ import nicolBolas from '../assets/planeswalkers/nicol_bolas_grixis.jpg';
 
 interface DeckContainerProps {
     deckName: string,
+    cardList: React.ComponentState,
 }
 
-const DeckContainer: FC<DeckContainerProps> = ({ deckName }) => {
+const DeckContainer: FC<DeckContainerProps> = ({ deckName, cardList }) => {
     const iconStyle: React.CSSProperties = {
         fontSize: '5rem',
         color: '#ffcc4d',
@@ -31,7 +32,7 @@ const DeckContainer: FC<DeckContainerProps> = ({ deckName }) => {
                         <DeckColor deckName={deckName}/>
                     </div>
 
-                    <Deck deckName={'Grixis Midrange'} />
+                    <Deck cardList={cardList}/>
                 </ScrollWrapper>
             </div>
         </motion.div>
