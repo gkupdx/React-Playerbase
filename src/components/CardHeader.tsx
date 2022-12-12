@@ -9,6 +9,7 @@ const CardHeader: FC<CardHeaderProps> = ({ imageSrc }) => {
     const cardHeaderStyle: React.CSSProperties = {
         width: '150px',
         height: '200px',
+        boxShadow: '0 5px 5px 0 #000',
     }
 
     return (
