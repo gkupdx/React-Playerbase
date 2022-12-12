@@ -89,28 +89,31 @@ const Profile: FC<ProfileProps> = ({ player }) => {
     }
 
     const onCardSearch = async () => {
-        const card = await Scry.Cards.byName(searchBoxInput);
-        const imageURI: ImageURI = (card.image_uris?.normal);
+        try {
+            const card = await Scry.Cards.byName(searchBoxInput);
+            const imageURI: ImageURI = (card.image_uris?.normal);
 
-        if (imageURI) {
-            const imageSrc = imageURI.toString();
-            setCardImage(imageSrc);
-        } else {
+            if (imageURI) {
+                const imageSrc = imageURI.toString();
+                setCardImage(imageSrc);
+            }
+        } catch {
             setCardImage("Not Found");
         }
+        
     }
 
     const onCardAdd = () => {
         // check to make sure the searched card exists & is successfully displayed
-        if (cardImage) {
-           // check to see if card list is in default state 
-           if (cardList[0].id === 0) {
+        if (cardImage !== "Not Found" && cardImage !== '') {
+            // check to see if card list is in default state 
+            if (cardList[0].id === 0) {
                 setCardList([{
                     id: 1,
                     cardName: searchBoxInput,
                     cardImageUri: cardImage,
                 }]);
-           } else {
+            } else {
                 const newCardId = Math.floor(Math.random() * 10000); // need to fix this later
                 const newCard = {
                     id: newCardId,
@@ -118,7 +121,7 @@ const Profile: FC<ProfileProps> = ({ player }) => {
                     cardImageUri: cardImage,
                 }
                 setCardList([...cardList, newCard]);
-           }
+            }
         }
     }
 
@@ -171,7 +174,7 @@ const Profile: FC<ProfileProps> = ({ player }) => {
             <div className='container'>
                 <CardSearchBox cardImage={cardImage} onCardInputChange={onCardInputChange} onCardSearch={onCardSearch} onCardAdd={onCardAdd} />
 
-                <DeckContainer deckName={'Grixis Midrange'} cardList={cardList}/>
+                <DeckContainer deckName={'Grixis Midrange'} cardList={cardList} />
             </div>
 
         </div>
