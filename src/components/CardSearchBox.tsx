@@ -17,13 +17,12 @@ const CardSearchBox: FC<SearchBoxProps> = ({ cardImage, onCardInputChange, onCar
                 <label htmlFor="searchBox">Search for a card to add:</label>
                 <input onChange={onCardInputChange} type="text" placeholder="Enter exact card name..." />
                 <button onClick={onCardSearch}>Search</button>
-                <p>Tip: Don't forget to include commas!</p>
             </div>
 
             <div className='cardPreview'>
-                {cardImage && <Card cardImage={cardImage} />}
-                {cardImage === '' && <span>A preview of your card will appear here</span>}
-                {cardImage === 'Not Found' && <span>Something went wrong. Please check to make sure the spelling is correct.</span>}
+                {cardImage !== '' && cardImage !== 'Not Found' && <Card cardImage={cardImage} />}
+                {cardImage === '' && <p>A preview of your card will appear here</p>}
+                {cardImage === 'Not Found' && <p>Something went wrong.<br/>Please make sure the spelling is correct and try again.</p>}
             </div>
 
             <button onClick={onCardAdd}>Add To Deck</button>
