@@ -9,8 +9,9 @@ interface DeckProps {
 const Deck: FC<DeckProps> = ({ cardList }) => {
     return (
         <div className='deck'>
-            {cardList.map((item: React.ComponentState) => {
-                return <CardHeader key={item.id} imageSrc={item.cardImageUri} />
+            {cardList[0].id === 0 && <p>Cards added to the deck will be displayed here</p>}
+            {cardList[0].id !== 0 && cardList.map((item: React.ComponentState) => {
+                return <CardHeader key={item.id} imageSrc={item.cardImageUri}/>
             })}
         </div>
     )
