@@ -14,11 +14,6 @@ interface DeckContainerProps {
 }
 
 const DeckContainer: FC<DeckContainerProps> = ({ deckName, cardList }) => {
-    // const iconStyle: React.CSSProperties = {
-    //     fontSize: '5rem',
-    //     color: '#ffcc4d',
-    //     opacity: '0.9',
-    // }
 
     return (
         <motion.div animate={{ y: 0, opacity: 1 }} initial={{ y: 300, opacity: 0.7 }} transition={{ type: "tween", duration: 0.8 }} className='deckContainer'>
