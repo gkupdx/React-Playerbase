@@ -34,7 +34,9 @@ const Profile: FC<ProfileProps> = ({ player }) => {
         id: 0,
         cardName: "",
         cardImageUri: "",
+        count: 0,
     }]);
+    const [cardCount, setCardCount] = useState(0);
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const { id } = useParams();
@@ -99,28 +101,54 @@ const Profile: FC<ProfileProps> = ({ player }) => {
             }
         } catch {
             setCardImage("Not Found");
-        }
-        
+        }   
     }
+
+    // keeps track of card count in deck
+    useEffect(() => {
+        let total = 0;
+
+        cardList.forEach((card: React.ComponentState) => {
+            total += card.count;
+        });
+
+        setCardCount(total);
+    }, [cardList]);
 
     const onCardAdd = () => {
         // check to make sure the searched card exists & is successfully displayed
         if (cardImage !== "Not Found" && cardImage !== '') {
-            // check to see if card list is in default state 
+            // check to see if card list is in default state (ie. empty)
             if (cardList[0].id === 0) {
                 setCardList([{
                     id: 1,
                     cardName: searchBoxInput,
                     cardImageUri: cardImage,
+                    count: 1,
                 }]);
+            } else if (cardCount === 60) { // check to see if all 60 card slots have been used
+                console.log("Sorry, your deck has already reached the max card limit of 60 cards. Please remove some cards & try again.");
             } else {
                 const newCardId = Math.floor(Math.random() * 10000); // need to fix this later
                 const newCard = {
                     id: newCardId,
                     cardName: searchBoxInput,
                     cardImageUri: cardImage,
+                    count: 1,
                 }
-                setCardList([...cardList, newCard]);
+
+                cardList.forEach((card: React.ComponentState) => {
+                    // check to see if card already exists in deck
+                    // if yes, increase the count if count < 4
+                    if (newCard.cardName === card.cardName && card.count < 4) {
+                        card.count += 1;
+                        setCardList([...cardList]);
+                    } else if (newCard.cardName === card.cardName && card.count === 4) { // if count === 4, do nothing
+                        setCardList([...cardList]);
+                    } else { // if new card, add card to list
+                        setCardList([...cardList, newCard]);
+                    }
+                });
             }
         }
     }
@@ -174,7 +202,7 @@ const Profile: FC<ProfileProps> = ({ player }) => {
             <div className='container'>
                 <CardSearchBox cardImage={cardImage} onCardInputChange={onCardInputChange} onCardSearch={onCardSearch} onCardAdd={onCardAdd} />
 
-                <DeckContainer deckName={'Grixis Midrange'} cardList={cardList} />
+                <DeckContainer deckName={'Grixis Midrange'} cardList={cardList} cardCount={cardCount}/>
             </div>
 
         </div>
