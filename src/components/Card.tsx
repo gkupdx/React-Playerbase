@@ -7,7 +7,7 @@ interface CardProps {
 
 const Card: FC<CardProps> = ({ cardImage }) => {
     return (
-        <img width='246px' height='346px' src={cardImage} alt="Card" />
+        <img width='266px' height='376px' src={cardImage} alt="Card" />
     )
 }
 
