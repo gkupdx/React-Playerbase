@@ -11,9 +11,10 @@ import nicolBolas from '../assets/planeswalkers/nicol_bolas_grixis.jpg';
 interface DeckContainerProps {
     deckName: string,
     cardList: React.ComponentState,
+    cardCount: React.ComponentState,
 }
 
-const DeckContainer: FC<DeckContainerProps> = ({ deckName, cardList }) => {
+const DeckContainer: FC<DeckContainerProps> = ({ deckName, cardList, cardCount }) => {
 
     return (
         <motion.div animate={{ y: 0, opacity: 1 }} initial={{ y: 300, opacity: 0.7 }} transition={{ type: "tween", duration: 0.8 }} className='deckContainer'>
@@ -26,6 +27,8 @@ const DeckContainer: FC<DeckContainerProps> = ({ deckName, cardList }) => {
 
                     <Deck cardList={cardList}/>
                 </ScrollWrapper>
+
+                <p className='totalCards'>Total card count: {cardCount}</p>
             </div>
         </motion.div>
     )
