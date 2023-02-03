@@ -46,3 +46,23 @@ body {
   border: 1px solid #000;
   color: #000;
 }
+
+.alternateBtn {
+  width: 300px;
+  height: 400px;
+  background: #252525;
+  color: var(--pb-primary);
+  font-family: 'Courier Prime', monospace;
+  font-size: 1.5rem;
+  border: 1px solid var(--pb-primary);
+  border-radius: 50px;
+  box-shadow: 0 5px #000;
+  align-self: center;
+}
+
+.alternateBtn:hover {
+  cursor: pointer;
+  background-color: var(--pb-sub-grey);
+  border: 1px solid var(--pb-white);
+  color: var(--pb-white);
+}
