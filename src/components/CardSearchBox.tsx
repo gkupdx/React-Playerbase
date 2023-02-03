@@ -22,7 +22,7 @@ const CardSearchBox: FC<SearchBoxProps> = ({ cardImage, onCardInputChange, onCar
             <div className='cardPreview'>
                 {cardImage !== '' && cardImage !== 'Not Found' && <Card cardImage={cardImage} />}
                 {cardImage === '' && <p>A preview of your card will appear here</p>}
-                {cardImage === 'Not Found' && <p>Something went wrong.<br/>Please make sure the spelling is correct and try again.</p>}
+                {cardImage === 'Not Found' && <p style={{ color: 'darkorange' }}>Something went wrong.<br/>Please make sure the spelling is correct and try again.</p>}
             </div>
 
             <button onClick={onCardAdd}>Add To Deck</button>
