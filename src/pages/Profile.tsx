@@ -9,6 +9,7 @@ import { initPlayer } from '../features/player';
 import { checkPageRefresh } from '../utilities/checkLoginUtil';
 
 import * as Scry from 'scryfall-sdk';
+import ProfileMenu from '../components/ProfileMenu';
 import DeckContainer from '../components/DeckContainer';
 import CardSearchBox from '../components/CardSearchBox';
 import '../stylesheets/profile.css';
@@ -26,6 +27,7 @@ interface ProfileProps {
 type ImageURI = string | undefined; // utility type to work with Scryfall-SDK image URIs
 
 const Profile: FC<ProfileProps> = ({ player }) => {
+    const [toggleMenu, setToggleMenu] = useState('home');
     const [toggleSettings, setToggleSettings] = useState(false);
     const [deleteModal, setDeleteModal] = useState(false);
     const [searchBoxInput, setSearchBoxInput] = useState("");
@@ -80,6 +82,20 @@ const Profile: FC<ProfileProps> = ({ player }) => {
             .catch(error => console.log(error))
     }
 
+    const onMenuCardClick = (value: string) => {
+        let type = '';
+
+        if (value === 'build') {
+            type = 'build';
+        } else if (value === 'view') {
+            type = 'view';
+        } else {
+            type = 'metagame';
+        }
+
+        setToggleMenu(type);
+    }
+
     const onCardInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         // capitalizing the first letter of each word
         let inputString = event.target.value.toLowerCase().split(' ');
@@ -101,19 +117,8 @@ const Profile: FC<ProfileProps> = ({ player }) => {
             }
         } catch {
             setCardImage("Not Found");
-        }   
+        }
     }
-
-    // keeps track of card count in deck
-    useEffect(() => {
-        let total = 0;
-
-        cardList.forEach((card: React.ComponentState) => {
-            total += card.count;
-        });
-
-        setCardCount(total);
-    }, [cardList]);
 
     const onCardAdd = () => {
         // check to make sure the searched card exists & is successfully displayed
@@ -153,7 +158,27 @@ const Profile: FC<ProfileProps> = ({ player }) => {
         }
     }
 
-    // check to see if a user is logged in on page refresh
+    /** NEED TO WORK ON THIS **/
+    // const onCardDelete = (toDelete: string) => {
+    //     -> Step 1: filter for card to delete
+    //     -> Step 2: check the count value (if count > 0, subtract 1; else, remove from list)
+    // 
+    //     const updatedList = cardList.filter(card => card.cardName === toDelete);
+    //     setCardList(updatedList);
+    // }
+
+    /** keeps track of card count in deck **/
+    useEffect(() => {
+        let total = 0;
+
+        cardList.forEach((card: React.ComponentState) => {
+            total += card.count;
+        });
+
+        setCardCount(total);
+    }, [cardList]);
+
+    /** check to see if a user is logged in on page refresh **/
     useEffect(() => {
         checkPageRefresh(dispatch, navigate, id);
     }, [dispatch, navigate, id]);
@@ -198,12 +223,24 @@ const Profile: FC<ProfileProps> = ({ player }) => {
                 <h1>Welcome back, {player.username}!</h1>
             </motion.div>
 
-            {/* Card search + add feature & visible deck list */}
             <div className='container'>
+                {toggleMenu === 'home' ?
+                    <ProfileMenu onMenuCardClick={onMenuCardClick} />
+                    :
+                    <>
+                        <button style={{ width: '100px', height: '50px' }} onClick={() => setToggleMenu('home')}>Back to Menu</button>
+                        <CardSearchBox cardImage={cardImage} onCardInputChange={onCardInputChange} onCardSearch={onCardSearch} onCardAdd={onCardAdd} />
+                        <DeckContainer deckName={'Grixis Midrange'} cardList={cardList} cardCount={cardCount} />
+                    </>
+                }
+            </div>
+
+            {/* Card search + add feature & visible deck list */}
+            {/* <div className='container'>
                 <CardSearchBox cardImage={cardImage} onCardInputChange={onCardInputChange} onCardSearch={onCardSearch} onCardAdd={onCardAdd} />
 
                 <DeckContainer deckName={'Grixis Midrange'} cardList={cardList} cardCount={cardCount}/>
-            </div>
+            </div> */}
 
         </div>
     )
