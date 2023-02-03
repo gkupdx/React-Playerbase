@@ -19,13 +19,13 @@ const DeckContainer: FC<DeckContainerProps> = ({ deckName, cardList, cardCount }
     return (
         <motion.div animate={{ y: 0, opacity: 1 }} initial={{ y: 300, opacity: 0.7 }} transition={{ type: "tween", duration: 0.8 }} className='deckContainer'>
             <div>
+                <div className='deckHeader' style={{ backgroundImage: `url(${nicolBolas})`, backgroundPosition: 'center', backgroundSize: 'cover' }}>
+                    <h2>Grixis Midrange</h2>
+                    <DeckColor deckName={deckName} />
+                </div>
+                
                 <ScrollWrapper>
-                    <div className='deckHeader' style={{ backgroundImage: `url(${nicolBolas})`, backgroundPosition: 'center', backgroundSize: 'cover' }}>
-                        <h2>Grixis Midrange</h2>
-                        <DeckColor deckName={deckName}/>
-                    </div>
-
-                    <Deck cardList={cardList}/>
+                    <Deck cardList={cardList} />
                 </ScrollWrapper>
 
                 <p className='totalCards'>Total card count: {cardCount}</p>
