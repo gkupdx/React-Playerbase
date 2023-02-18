@@ -10,6 +10,9 @@ import authReducer from './features/authenticate';
 import playerReducer from './features/player';
 import { BrowserRouter } from 'react-router-dom';
 
+// "Slate" theme by Bootswatch
+import "bootswatch/dist/slate/bootstrap.min.css";
+
 export const store = configureStore({
   reducer: {
     form: formReducer,
